@@ -5,7 +5,7 @@ data class Book(
     val author: String
 ) {
     init {
-        require(title.isNotBlank()) { "Le titre ne peut pas être vide" }
-        require(author.isNotBlank()) { "L'auteur ne peut pas être vide" }
+        require(title.isNotBlank()) { "Title cannot be empty" }
+        require(author.isNotBlank()) { "Author cannot be empty" }
     }
 }

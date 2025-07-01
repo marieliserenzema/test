@@ -12,21 +12,21 @@ class BookUseCaseTest : FunSpec({
     val useCase = BookUseCase(repository)
 
     context("addBook") {
-        test("ajout d'un livre sans titre lance une exception"){
+        test("empty title throws with appropriate message"){
             shouldThrow<IllegalArgumentException> {
                useCase.addBook("", "Auteur")
-           }.message shouldBe "Le titre ne peut pas être vide"
+           }.message shouldBe "Title cannot be empty"
             verify(exactly = 0) { repository.save(any()) }
         }
 
-        test("ajout d'un livre sans auteur lance une exception"){
+        test("empty author throws with appropriate message"){
             shouldThrow<IllegalArgumentException> {
                 useCase.addBook("Titre", "")
-            }.message shouldBe "L'auteur ne peut pas être vide"
+            }.message shouldBe "Author cannot be empty"
             verify(exactly = 0) { repository.save(any()) }
         }
 
-        test("ajout d'un livre valide appelle le repository") {
+        test("adding a valid book calls save on the repository") {
             useCase.addBook("1984", "George Orwell")
             verify { repository.save(Book("1984", "George Orwell")) }
         }
@@ -34,7 +34,7 @@ class BookUseCaseTest : FunSpec({
     }
 
     context("listBooks"){
-        test("appelle findAll() et retourne les livres triés par titre (insensible à la casse)") {
+        test("calls findAll() and returns the books sorted by title") {
             val unsorted = listOf(
                 Book("Zorro", "A"),
                 Book("alpha", "B"),
