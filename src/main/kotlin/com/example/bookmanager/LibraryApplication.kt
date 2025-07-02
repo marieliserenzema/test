@@ -1,11 +1,11 @@
-package com.example.demo
+package com.example.bookmanager
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class DemoApplication
+class LibraryApplication
 
 fun main(args: Array<String>) {
-	runApplication<DemoApplication>(*args)
+    runApplication<LibraryApplication>(*args)
 }
